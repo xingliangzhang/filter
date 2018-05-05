@@ -17,8 +17,17 @@
 		<filter-name>filter1</filter-name>
 		<filter-class>web.CommentFilter1</filter-class>
 	</filter>
+	<filter>
+		<filter-name>filter2</filter-name>
+		<filter-class>web.CommentFilter2</filter-class>
+	</filter>
+	<!-- 多个过滤器：filter-mapping谁在前面，谁先执行！ -->
 	<filter-mapping>
 		<filter-name>filter1</filter-name>
+		<url-pattern>/comment</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>filter2</filter-name>
 		<url-pattern>/comment</url-pattern>
 	</filter-mapping>
 
