@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CommentFilter2 implements Filter {
+	//读取初始化参数
+	private FilterConfig filterConfig;
 	/**
 	 * 容器删除过滤器之前会调用destory方法。只会调用一次。
 	 */
@@ -39,8 +41,9 @@ public class CommentFilter2 implements Filter {
 		res.setContentType("text/html;charset=utf-8");
 		PrintWriter out=res.getWriter();
 		String content = req.getParameter("content");
-		// 查看是否有敏感字
-		if (content.length()>10) {
+		// 读取初始化参数
+		String size=filterConfig.getInitParameter("size");
+		if (content.length()>Integer.parseInt(size)) {
 			out.println("评论次数过多");
 		} else {
 			//没有敏感字，执行此方法，会继续往后调用。
@@ -56,6 +59,8 @@ public class CommentFilter2 implements Filter {
 	 * FilterConfig提供了getInitParamter方法来访问初始化参数。
 	 */
 	public void init(FilterConfig arg0) throws ServletException {
+		//将容器传递过来的FilterConfig对象保存起来
+		filterConfig=arg0;
 		System.out.println("filter2的init方法被调用了");
 	}
 
