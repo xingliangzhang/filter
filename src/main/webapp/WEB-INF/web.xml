@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>servletfilter</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>ServletComment</display-name>
-    <servlet-name>ServletComment</servlet-name>
-    <servlet-class>web.ServletComment</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletComment</servlet-name>
-    <url-pattern>/comment</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>servletfilter</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 默认放在前面，不是必须的 -->
+	<filter>
+		<filter-name>filter1</filter-name>
+		<filter-class>web.CommentFilter1</filter-class>
+	</filter>
+	<filter>
+		<filter-name>filter2</filter-name>
+		<filter-class>web.CommentFilter2</filter-class>
+		<init-param>
+		<param-name>size</param-name>
+		<param-value>5</param-value>
+		</init-param>
+	</filter>
+	<!-- 多个过滤器：filter-mapping谁在前面，谁先执行！ -->
+	<filter-mapping>
+		<filter-name>filter1</filter-name>
+		<url-pattern>/comment</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>filter2</filter-name>
+		<url-pattern>/comment</url-pattern>
+	</filter-mapping>
+
+
+
+
+	<servlet>
+		<description></description>
+		<display-name>CommentServlet</display-name>
+		<servlet-name>CommentServlet</servlet-name>
+		<servlet-class>web.CommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentServlet</servlet-name>
+		<url-pattern>/comment</url-pattern>
+	</servlet-mapping>
 </web-app>
