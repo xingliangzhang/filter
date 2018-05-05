@@ -10,7 +10,7 @@
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>content_form.jsp</welcome-file>
 	</welcome-file-list>
 	<!-- 默认放在前面，不是必须的 -->
 	<filter>
