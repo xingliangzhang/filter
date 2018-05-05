@@ -7,10 +7,10 @@
 <title>servletFilterDemo</title>
 </head>
 <body style="font-size: 30px;">
-	<form action="comment" method="get">
+	<form action="comment" method="post">
 		<fieldset>
 			<legend>评论</legend>
-			请输入你的评论： <input name="content" /> <input type="submit" value="提交" />
+			请输入你的评论： <input name="content" value="卡拉是一条狗"/> <input type="submit" value="提交" />
 		</fieldset>
 
 	</form>
